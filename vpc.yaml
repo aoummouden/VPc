@@ -8,7 +8,7 @@ Resources:
       Tags:
         - Key: keyname
           Value: value
-  subnetName:
+  subnet_Priv:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: us-east-1a
@@ -16,7 +16,16 @@ Resources:
       CidrBlock: 10.0.0.0/24
       Tags:
         - Key: keyname
-          Value: value        
+          Value: value 
+  subnet_Pub:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: myVPC
+      CidrBlock: 10.0.1.0/24
+      Tags:
+        - Key: keyname
+          Value: value               
 
 
   # igwName:
