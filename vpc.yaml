@@ -5,18 +5,6 @@ Resources:
     Properties:
       CidrBlock: 10.0.0.0/16
       EnableDnsSupport: true
-  subnet_default: 
-    Type: AWS::EC2::Subnet
-    Properties:
-      AvailabilityZone: us-east-1a
-      VpcId: !Ref myVPC  
-      CidrBlock: 10.0.0.0/24
-  subnet_Private:
-    Type: AWS::EC2::Subnet
-    Properties:
-      AvailabilityZone: us-east-1a
-      VpcId: !Re myVPC
-      CidrBlock: 10.0.1.0/24
   igwName:
     Type: AWS::EC2::InternetGateway
     Properties:
@@ -27,18 +15,8 @@ Resources:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
       VpcId: myVPC
-      InternetGatewayId: !Ref igwName
-
-  routeTableName:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: myVPC
-      Tags:
-        - Key: keyname
-          Value: value   
-
+      InternetGatewayId: !Ref igwName  
     
-
 
 
 
