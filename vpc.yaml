@@ -8,24 +8,37 @@ Resources:
       Tags:
         - Key: keyname
           Value: value
-  subnet1:
-    Type: AWS::EC2::Subnet
-    Properties:
-      AvailabilityZone: us-east-1a
-      VpcId: !Ref myVPC
-      CidrBlock: 10.0.0.0/24
-      Tags:
-        - Key: keyname
-          Value: value 
-  subnet2:
-    Type: AWS::EC2::Subnet
-    Properties:
-      AvailabilityZone: us-east-1a
-      VpcId: myVPC
-      CidrBlock: 10.0.1.0/24
-      Tags:
-        - Key: keyname
-          Value: value               
+  # subnet1:
+  #   Type: AWS::EC2::Subnet
+  #   Properties:
+  #     AvailabilityZone: us-east-1a
+  #     VpcId: !Ref myVPC
+  #     CidrBlock: 10.0.0.0/24
+  #     Tags:
+  #       - Key: keyname
+  #         Value: value 
+  # subnet2:
+  #   Type: AWS::EC2::Subnet
+  #   Properties:
+  #     AvailabilityZone: us-east-1a
+  #     VpcId: myVPC
+  #     CidrBlock: 10.0.1.0/24
+  #     Tags:
+  #       - Key: keyname
+  #         Value: value 
+  # routtable2:
+  #   Type: AWS::EC2::RouteTable
+  #   Properties:
+  #     VpcId: myVPC
+  #     Tags:
+  #       - Key: keyname
+  #         Value: value        
+
+  #   routeTableAssocName:
+  #     Type: AWS::EC2::SubnetRouteTableAssociation
+  #     Properties:
+  #       SubnetId: !Ref subnet2
+  #       RouteTableId: !Ref routtable2            
 
 
   # igwName:
@@ -38,7 +51,10 @@ Resources:
   #   Type: AWS::EC2::VPCGatewayAttachment
   #   Properties:
   #     VpcId: myVPC
-  #     InternetGatewayId: !Ref igwName  
+  #     InternetGatewayId: !Ref igwName
+
+     
+
     
 
 
