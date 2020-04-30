@@ -1,10 +1,10 @@
 
 Resources:
-  myVPC:
-    Type: AWS::EC2::VPC
-    Properties:
-      CidrBlock: 10.0.0.0/16
-      EnableDnsSupport: true
+  # myVPC:
+  #   Type: AWS::EC2::VPC
+  #   Properties:
+  #     CidrBlock: 10.0.0.0/16
+  #     EnableDnsSupport: true
   igwName:
     Type: AWS::EC2::InternetGateway
     Properties:
