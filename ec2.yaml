@@ -1,0 +1,78 @@
+
+  
+Resources:
+  
+  myVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      Tags:
+        - Key: keyname
+          Value: value
+  subnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: !Ref myVPC
+      CidrBlock: 10.0.0.0/24
+      Tags:
+        - Key: keyname
+          Value: value  
+  subnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: !Ref myVPC
+      CidrBlock: 10.0.1.0/24
+      Tags:
+        - Key: keyname
+          Value: value   
+
+  routeTablepub:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref myVPC
+      Tags:
+        - Key: keyname
+          Value: value 
+
+  LogicalID:
+    Type: "AWS::EC2::SubnetRouteTableAssociation"
+    Properties:
+      RouteTableId: !Ref routeTablepub
+      SubnetId: !Ref subnet2
+
+  igwName:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: keyname
+          Value: value
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref myVPC
+      InternetGatewayId: !Ref igwName
+
+  LogicalID:
+    Type: "AWS::EC2::GatewayRouteTableAssociation"
+    Properties:
+      RouteTableId: !Ref routeTablepub
+      GatewayId: !Ref igwName
+          
+                            
+
+  # EC2Instance:
+  #   Type: AWS::EC2::Instance
+  #   Properties:
+  #     ImageId: ami-054362537f5132ce2
+  #     InstanceType: t2.micro
+
+
+      
+          
+  
+  
+
+  
