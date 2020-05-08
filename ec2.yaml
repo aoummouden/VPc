@@ -9,20 +9,20 @@ Description: Virginia-ec2
 
 
 
-# Parameters:
-#   SubnetID:
-#     Description: chose subnet-dinamically
-#     Type: String
-#     Default: subnet-063b2efa3cbd8b7e1
-#     AllowedValues:
-#       - subnet-063b2efa3cbd8b7e1
-#       - subnet-083bf7ab93601ab8b
+Parameters:
+  SubnetID:
+    Description: chose subnet-dinamically
+    Type: String
+    Default: PrivateSub
+    AllowedValues:
+      - PublicSub
+      - PrivateSub
 
-# Mappings:
-#   SubnetMap: 
-#     us-east-1:
-#       PublicSub:  subnet-063b2efa3cbd8b7e1   
-#       PrivateSub: subnet-083bf7ab93601ab8b
+Mappings:
+  SubnetMap: 
+    us-east-1:
+      PublicSub:  subnet-063b2efa3cbd8b7e1   
+      PrivateSub: subnet-083bf7ab93601ab8b
 
   
 Resources:
@@ -30,9 +30,18 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       KeyName: virginia-kp
-      SubnetId : subnet-063b2efa3cbd8b7e1
+      SubnetId : !FindInMap [SubnetMap , us-east-1, !Ref SubnetID  ]
       ImageId: ami-0323c3dd2da7fb37d
       InstanceType: t2.micro
+      UserData: !Base64 
+        #!/bin/bash
+        yum update -y
+        yum install httpd -y
+        service httpd start
+        chconfig httpd on
+        cd /var/www/html
+        echo "<html><h1>This is Abdel's Server</h1></html>" > index.html
+        
       
       Tags:
         - Key: Name
